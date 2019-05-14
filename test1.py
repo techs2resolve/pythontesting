@@ -73,6 +73,14 @@ mycursor = mydb.cursor()
 
 mycursor.execute("CREATE DATABASE "+project_name+'_dev')
 mycursor.execute("CREATE DATABASE "+project_name+'_qa')
+mycursor.execute("CREATE USER "+project_name+'@localhost IDENTIFIED BY '+"'"+mysql_pass+"';")
+mycursor.execute("GRANT ALL PRIVILEGES ON "+project_name+'_dev'".* "+'TO '+project_name+"@localhost;")
+mycursor.execute("GRANT ALL PRIVILEGES ON "+project_name+'_qa'".* "+'TO '+project_name+"@localhost;")
+mycursor.execute("FLUSH PRIVILEGES;")
 
+mycursor.execute("SHOW DATABASES")
+
+for x in mycursor:
+  print(x)
 
 
