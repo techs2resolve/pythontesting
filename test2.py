@@ -14,14 +14,15 @@ import shutil
 import os
 import mysql.connector
 
-test = 'testing1'
+test = input("Enter the database name :- ")
+#test = 'testing2'
 testpass = 'test123'
 
 mydb = mysql.connector.connect(
-  host="localhost",
-  user="root",
-  passwd="root"
-)
+    host="localhost",
+    user="root",
+    passwd="root"
+  )
 
 mycursor = mydb.cursor()
 
@@ -31,12 +32,10 @@ mycursor.execute("CREATE USER "+test+'@localhost IDENTIFIED BY '+"'"+testpass+"'
 mycursor.execute("GRANT ALL PRIVILEGES ON "+test+'_dev'".* "+'TO '+test+"@localhost;")
 mycursor.execute("GRANT ALL PRIVILEGES ON "+test+'_qa'".* "+'TO '+test+"@localhost;")
 mycursor.execute("FLUSH PRIVILEGES;")
-
 mycursor.execute("SHOW DATABASES")
 
-
 for x in mycursor:
-  print(x)
+    print(x)
 
 
 # shutil.copytree('/Users/sarfaraz/Downloads/gitlab', '/Users/sarfaraz/PycharmProjects/pythontesting/testing/gitlab')
